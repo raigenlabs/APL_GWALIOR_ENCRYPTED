@@ -450,7 +450,7 @@ export default function WalletSystem({ user, onUpdateUser, onRefreshWallet }: Wa
                         )}
                         {tx.type === 'withdrawal' && (
                           <span className="text-amber-600 flex items-center gap-1.5 font-bold">
-                            <ArrowDownLeft className="w-3.5 h-3.5 text-amber-500 bg-amber-55 p-0.5 rounded" /> Bank Out
+                            <ArrowDownLeft className="w-3.5 h-3.5 text-amber-500 bg-amber-50 p-0.5 rounded" /> Bank Out
                           </span>
                         )}
                       </td>

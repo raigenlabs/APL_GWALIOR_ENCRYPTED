@@ -749,17 +749,17 @@ export default function WatchRooms({ user, match, onRefreshWallet }: WatchRoomsP
             <div className="lg:col-span-4 bg-white p-5 rounded-3xl border border-slate-100 flex flex-col justify-between h-[550px] shadow-sm" id="room_conversations">
               
               {/* Messages feed */}
-              <div className="space-y-3 flex-1 overflow-y-auto max-h-[380px] p-1 border-b border-gray-800 mb-3 select-none">
+              <div className="space-y-3 flex-1 overflow-y-auto max-h-[380px] p-1 border-b border-slate-100 mb-3 select-none">
                 
                 {/* Active hosted Poll area if exists */}
                 {activeRoom?.poll && (
                   <div className="bg-blue-500/5 border border-blue-500/20 rounded-xl p-3 space-y-3.5 mb-4">
-                    <div className="flex items-center gap-1.5 text-blue-400 text-[10px] font-mono tracking-wider font-bold">
-                      <Vote className="w-4 h-4 text-blue-400 animate-bounce" />
+                    <div className="flex items-center gap-1.5 text-blue-600 text-[10px] font-mono tracking-wider font-bold">
+                      <Vote className="w-4 h-4 text-blue-500 animate-bounce" />
                       LIVE ARENA HOST POLL
                     </div>
                     
-                    <h5 className="text-xs font-bold leading-snug">{activeRoom.poll.question}</h5>
+                    <h5 className="text-xs font-bold leading-snug text-slate-800">{activeRoom.poll.question}</h5>
                     
                     <div className="space-y-2">
                       {activeRoom.poll.options.map((opt) => {
@@ -774,12 +774,12 @@ export default function WatchRooms({ user, match, onRefreshWallet }: WatchRoomsP
                             disabled={!!hasVoted}
                             className={`w-full text-left text-xs p-2 rounded-lg border flex items-center justify-between cursor-pointer transition-all ${
                               isThis 
-                                ? 'bg-blue-600/20 border-blue-500 font-bold text-blue-300' 
-                                : 'bg-navy-950 border-gray-800 hover:border-gray-600'
+                                ? 'bg-blue-50 border-blue-200 font-bold text-blue-750' 
+                                : 'bg-slate-50 border-slate-150 hover:border-slate-350 hover:bg-slate-100/50 text-slate-800'
                             }`}
                           >
                             <span>{opt.label}</span>
-                            <span className="font-mono text-gray-500 text-[10px] font-extrabold">{opt.votes} votes</span>
+                            <span className="font-mono text-slate-500 text-[10px] font-extrabold">{opt.votes} votes</span>
                           </button>
                         );
                       })}
@@ -790,16 +790,16 @@ export default function WatchRooms({ user, match, onRefreshWallet }: WatchRoomsP
                 {/* Messages item render */}
                 {chats.map((m) => (
                   <div key={m.id} className="flex gap-2.5 items-start">
-                    <img src={m.userAvatar} alt="user" className="w-7 h-7 object-cover rounded-full" />
+                    <img src={m.userAvatar} alt="user" className="w-7 h-7 object-cover rounded-full border border-slate-100" />
                     <div>
                       <div className="flex items-baseline gap-1.5">
-                        <span className="text-xs font-bold text-gray-300">{m.userName}</span>
-                        <span className="text-[8px] text-gray-500 font-mono">{m.timestamp}</span>
+                        <span className="text-xs font-bold text-slate-700">{m.userName}</span>
+                        <span className="text-[8px] text-slate-450 font-mono">{m.timestamp}</span>
                       </div>
-                      <p className={`text-xs px-2.5 py-1 rounded-xl max-w-[200px] mt-0.5 leading-relaxed break-words ${
+                      <p className={`text-xs px-3 py-1.5 rounded-2xl max-w-[200px] mt-0.5 leading-relaxed break-words shadow-sm ${
                         m.userId === 'current_user' 
-                          ? 'bg-blue-600 text-white rounded-tr-none' 
-                          : 'bg-navy-950 border border-gray-800 text-gray-300 rounded-tl-none'
+                          ? 'bg-blue-600 border border-blue-500 text-white rounded-tr-none shadow-blue-500/5' 
+                          : 'bg-slate-100/90 border border-slate-200/50 text-slate-800 rounded-tl-none'
                       }`}>
                         {m.content}
                       </p>
@@ -813,13 +813,13 @@ export default function WatchRooms({ user, match, onRefreshWallet }: WatchRoomsP
               <div className="space-y-3">
                 
                 {/* Rapid emoticon quick burst overlays */}
-                <div className="flex gap-2 justify-center border-t border-gray-800/60 pt-2 pb-0.5">
+                <div className="flex gap-2 justify-center border-t border-slate-100 pt-2 pb-0.5">
                   {['🔥', '💀', '👏', '🤯'].map((emoji) => (
                     <button
                       key={emoji}
                       id={`btn_chat_burst_${emoji}`}
                       onClick={() => handleSendChat(null as any, 'emoji-burst', emoji)}
-                      className="bg-navy-950 font-smooth hover:bg-navy-800 px-3 py-1 text-md rounded-full border border-gray-800 cursor-pointer text-center text-xs hover:scale-110 active:scale-95 transform transition-all select-none"
+                      className="bg-slate-50 font-smooth hover:bg-slate-100 px-3.5 py-1 rounded-full border border-slate-150 cursor-pointer text-center text-xs hover:scale-110 active:scale-95 transform transition-all select-none"
                     >
                       {emoji}
                     </button>
@@ -830,7 +830,7 @@ export default function WatchRooms({ user, match, onRefreshWallet }: WatchRoomsP
                     <button
                       id="btn_trigger_poll_create_view"
                       onClick={() => setShowPollCreator(!showPollCreator)}
-                      className="bg-blue-600/10 hover:bg-blue-600/25 border border-blue-500/25 text-blue-400 text-[10px] font-mono px-3 py-1 rounded-full cursor-pointer flex items-center gap-1 ml-auto"
+                      className="bg-blue-600/10 hover:bg-blue-600/25 border border-blue-500/25 text-blue-500 text-[10px] font-mono px-3 py-1 rounded-full cursor-pointer flex items-center gap-1 ml-auto"
                     >
                       <Plus className="w-3 h-3" /> Add Poll
                     </button>
@@ -839,14 +839,14 @@ export default function WatchRooms({ user, match, onRefreshWallet }: WatchRoomsP
 
                 {/* Poll Creator Floating Form inside Panel */}
                 {showPollCreator && (
-                  <form onSubmit={handleCreatePoll} className="bg-navy-950 p-2.5 rounded-lg border border-gray-800 text-xs space-y-2">
+                  <form onSubmit={handleCreatePoll} className="bg-slate-50 p-3 rounded-2xl border border-slate-200 text-xs space-y-2 text-slate-800">
                     <div className="space-y-1">
-                      <span>Poll Question</span>
+                      <span className="font-bold text-slate-700">Poll Question</span>
                       <input
                         type="text"
                         value={pollQuestion}
                         onChange={(e) => setPollQuestion(e.target.value)}
-                        className="bg-navy-900 border border-gray-800 p-1 w-full text-xs text-white rounded outline-none"
+                        className="bg-white border border-slate-200 p-2 w-full text-xs text-slate-800 rounded-xl outline-none focus:border-blue-500 font-semibold"
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-1.5">
@@ -854,18 +854,18 @@ export default function WatchRooms({ user, match, onRefreshWallet }: WatchRoomsP
                         type="text"
                         value={pollOpt1}
                         onChange={(e) => setPollOpt1(e.target.value)}
-                        className="bg-navy-900 border /border-gray-800 p-1 text-[11px] text-white rounded"
+                        className="bg-white border border-slate-200 p-2 text-[11px] text-slate-800 rounded-xl outline-none focus:border-blue-500 font-semibold"
                       />
                       <input
                         type="text"
                         value={pollOpt2}
                         onChange={(e) => setPollOpt2(e.target.value)}
-                        className="bg-navy-900 border border-gray-800 p-1 text-[11px] text-white rounded"
+                        className="bg-white border border-slate-200 p-2 text-[11px] text-slate-800 rounded-xl outline-none focus:border-blue-500 font-semibold"
                       />
                     </div>
                     <div className="flex gap-1.5 justify-end">
-                      <button type="button" onClick={() => setShowPollCreator(false)} className="text-gray-400 px-2 py-0.5">Cancel</button>
-                      <button type="submit" className="bg-blue-600 text-white px-3 py-0.5 rounded font-bold">Publish</button>
+                      <button type="button" onClick={() => setShowPollCreator(false)} className="text-slate-400 font-bold px-2 py-0.5">Cancel</button>
+                      <button type="submit" className="bg-blue-600 text-white px-3 py-1.5 rounded-xl text-[10px] uppercase font-mono font-black tracking-wider shadow-md shadow-blue-500/10">Publish</button>
                     </div>
                   </form>
                 )}
@@ -878,7 +878,7 @@ export default function WatchRooms({ user, match, onRefreshWallet }: WatchRoomsP
                     value={chatInp}
                     id="inp_chat_msg"
                     onChange={(e) => setChatInp(e.target.value)}
-                    className="bg-navy-950 border border-gray-800 text-xs text-white px-3.5 py-2.5 rounded-xl outline-none focus:border-blue-500 w-full"
+                    className="bg-slate-50 border border-slate-200 text-xs text-slate-800 px-4 py-3 rounded-xl outline-none focus:border-blue-500 focus:bg-white transition-all w-full font-semibold placeholder:text-slate-400"
                     placeholder="Whip up some fan banter..."
                   />
                   <button
@@ -897,34 +897,34 @@ export default function WatchRooms({ user, match, onRefreshWallet }: WatchRoomsP
           </div>
 
           {/* VOICE CHAT BAR (always locked bottom) */}
-          <div className="bg-navy-900 border border-gray-800 p-3.5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="bg-white border border-slate-200 p-4 rounded-[28px] shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-slate-200/40">
             
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 text-left">
               <div className="relative">
-                <div className="w-10 h-10 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center border border-emerald-500/25">
+                <div className="w-10 h-10 bg-emerald-50 text-emerald-650 rounded-full flex items-center justify-center border border-emerald-100">
                   <Mic className="w-5 h-5" />
                 </div>
-                <div className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-400 border-2 border-navy-900 rounded-full" />
+                <div className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-400 border-2 border-white rounded-full animate-bounce" />
               </div>
               
-              <div>
-                <h5 className="text-xs font-bold text-white">Daily.co WebRTC Voice Lobby Connected</h5>
-                <p className="text-[10px] text-gray-500 font-mono">
-                  Audio delay: <span className="text-emerald-400 font-semibold">{audioLatencyMs}ms</span> (High speed)
+              <div className="text-left">
+                <h5 className="text-xs font-black text-slate-800">Daily.co WebRTC Voice Lobby Connected</h5>
+                <p className="text-[10px] text-slate-500 font-mono">
+                  Audio latency: <span className="text-emerald-600 font-bold">{audioLatencyMs}ms</span> (High speed)
                 </p>
               </div>
             </div>
 
             {/* Simulating Waveform voice bars layout */}
             <div className="flex items-center gap-3">
-              <span className="text-[10px] text-gray-400 uppercase font-mono font-bold">Live Amplitude Waveform:</span>
+              <span className="text-[10px] text-slate-400 uppercase font-mono font-black tracking-wider">Live Amplitude Waveform:</span>
               <div className="flex items-end gap-0.5 h-6 animate-pulse select-none">
-                <span className="w-1 h-3 bg-emerald-400 rounded-full" />
-                <span className="w-1 h-5 bg-emerald-400 rounded-full" />
-                <span className="w-1 h-2 bg-emerald-400 rounded-full" />
-                <span className="w-1 h-4 bg-emerald-400 rounded-full" />
-                <span className="w-1 h-6 bg-emerald-400 rounded-full" />
-                <span className="w-1 h-3 bg-emerald-400 rounded-full" />
+                <span className="w-1 h-3 bg-emerald-500 rounded-full" />
+                <span className="w-1 h-5 bg-emerald-500 rounded-full" />
+                <span className="w-1 h-2 bg-emerald-500 rounded-full" />
+                <span className="w-1 h-4 bg-emerald-500 rounded-full" />
+                <span className="w-1 h-6 bg-emerald-500 rounded-full" />
+                <span className="w-1 h-3 bg-emerald-500 rounded-full" />
               </div>
             </div>
 
