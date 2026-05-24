@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Custom Sporty Brand Colors */
+  --color-brand-blue: #0055FF;
+  --color-brand-purple: #7C3AED;
+  --color-brand-orange: #FF5A00;
+  --color-brand-green: #00E676;
+  --color-brand-dark: #0F172A;
+  --color-brand-bg: #F8FAFC;
+}
+
+/* Base style resets */
+body {
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-dark);
+  font-family: var(--font-sans);
+}
+
+/* Custom slick scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #0055FF25;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0055FF60;
+}
+
+/* Sports Glow Classes */
+.glow-blue {
+  box-shadow: 0 0 25px rgba(0, 85, 255, 0.15);
+}
+
+.glow-purple {
+  box-shadow: 0 0 25px rgba(124, 58, 237, 0.15);
+}
+
+.glow-orange {
+  box-shadow: 0 0 25px rgba(255, 90, 0, 0.15);
+}
+
+.glow-green {
+  box-shadow: 0 0 25px rgba(0, 230, 118, 0.15);
+}
+
+/* Micro animations */
+@keyframes fluid-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-fast {
+  animation: fluid-glow 2s ease-in-out infinite;
+}

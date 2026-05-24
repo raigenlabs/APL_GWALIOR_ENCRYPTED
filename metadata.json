@@ -1,0 +1,6 @@
+{
+  "name": "PitchSide",
+  "description": "Where India watches together. Real-time IPL scores, watch rooms with live wagering, split-screen fan battles, and ambient crowd noise.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
